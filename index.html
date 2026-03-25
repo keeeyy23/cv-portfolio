@@ -3,57 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Angelica Napala - CV</title>
+
+<title>Angelica Napala</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
-    background: #f9f9f9;
-    color: #333;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
+html {
+    scroll-behavior: smooth;
 }
 
-.header {
-    text-align: center;
-    padding: 20px;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f0f;
+    color: #ffffff;
 }
 
-.header img {
-    width: 120px;
-    height: 120px;
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    animation: fadeIn 1.2s ease;
+}
+
+.hero img {
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid #ffffff20;
 }
 
-h1 {
-    margin: 10px 0 5px;
+.text h1 {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.text p {
+    margin-top: 8px;
+    color: #aaa;
 }
 
 .section {
-    background: white;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 80px 20px;
+    max-width: 800px;
+    margin: auto;
+    animation: fadeUp 1s ease;
 }
 
 h2 {
-    border-bottom: 2px solid #eee;
+    font-size: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
     padding-bottom: 5px;
+    color: #ddd;
 }
 
 ul {
-    padding-left: 20px;
+    margin-left: 20px;
+    margin-bottom: 25px;
 }
 
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
+li {
+    margin-bottom: 10px;
+}
+
+li:hover {
+    color: #00ffd5;
+    transition: 0.3s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 700px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .text h1 {
+        font-size: 34px;
     }
 }
 </style>
@@ -61,45 +111,43 @@ ul {
 
 <body>
 
-<div class="container">
-
-    <div class="header">
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
         <img src="photo.jpeg" alt="Profile Photo">
-        <h1>Angelica Napala</h1>
-        <p>Student</p>
-        <p>GSC, Philippines</p>
-        <p>angelicanapala@gmail.com</p>
-    </div>
 
-    <div class="section">
-        <h2>Education</h2>
-        <p><strong>Ateneo de Davao University</strong></p>
-        <p>BS Information Technology</p>
-        <p>2021 – Present</p>
+        <div class="text">
+            <h1>Angelica Napala</h1>
+            <p>BSIT Student</p>
+            <p>GSC, Philippines</p>
+            <p>angelicanapala@gmail.com</p>
+        </div>
     </div>
+</section>
 
-    <div class="section">
-        <h2>Projects</h2>
-        <ul>
-            <li>
-                <strong>Personal CV Website</strong><br>
-                A responsive personal portfolio website showcasing my profile and skills.<br>
-                Tools: HTML, CSS
-            </li>
-        </ul>
-    </div>
+<section class="section">
 
-    <div class="section">
-        <h2>Skills</h2>
-        <ul>
-            <li>Canva</li>
-            <li>Microsoft Word</li>
-            <li>Basic HTML & CSS</li>
-            <li>Communication</li>
-        </ul>
-    </div>
+    <h2>Education</h2>
+    <p><strong>Ateneo de Davao University</strong></p>
+    <p>BS Information Technology (2021 – Present)</p>
 
-</div>
+    <h2>Projects</h2>
+    <ul>
+        <li>
+            <strong>Personal CV Website</strong><br>
+            Responsive portfolio using HTML & CSS
+        </li>
+    </ul>
+
+    <h2>Skills</h2>
+    <ul>
+        <li>Canva</li>
+        <li>Microsoft Word</li>
+        <li>Basic HTML & CSS</li>
+        <li>Communication</li>
+    </ul>
+
+</section>
 
 </body>
 </html>
