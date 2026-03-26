@@ -3,171 +3,577 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Angelica Napala</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-html {
-    scroll-behavior: smooth;
+:root {
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #161616;
+  --accent: #ffffff;
+  --muted: #555;
+  --soft: #aaa;
+  --border: #1f1f1f;
+  --sidebar-w: 220px;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #0f0f0f;
-    color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--accent);
+  display: flex;
+  min-height: 100vh;
 }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 100;
+  transition: transform 0.3s ease;
 }
 
-.hero-content {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    animation: fadeIn 1.2s ease;
+.sidebar-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  padding: 0 28px 36px;
+  border-bottom: 1px solid var(--border);
+  color: #fff;
 }
 
-.hero img {
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ffffff20;
+.sidebar-logo span {
+  font-style: italic;
+  color: var(--soft);
 }
 
-.text h1 {
-    font-size: 48px;
-    font-weight: 700;
+nav {
+  flex: 1;
+  padding: 32px 0;
 }
 
-.text p {
-    margin-top: 8px;
-    color: #aaa;
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 28px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s, padding-left 0.2s;
+  position: relative;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+nav a:hover, nav a.active {
+  color: #fff;
+  padding-left: 34px;
+}
+
+nav a:hover::before, nav a.active::before {
+  opacity: 1;
+}
+
+nav a .nav-icon {
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+}
+
+.sidebar-bottom {
+  padding: 24px 28px 0;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+}
+
+#home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 70px;
+  position: relative;
+  overflow: hidden;
+}
+
+#home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 50%, #1a1a1a 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, #141414 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--soft);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.hero-name em {
+  font-style: italic;
+  color: var(--soft);
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--soft);
+  margin-bottom: 36px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-divider {
+  width: 48px;
+  height: 1px;
+  background: #fff;
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-sub {
+  font-size: 13px;
+  color: var(--soft);
+  max-width: 380px;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  animation: fadeUp 0.8s 0.4s ease both;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 70px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+  animation: fadeUp 0.8s 0.6s ease both;
+}
+
+.hero-scroll::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--muted);
 }
 
 .section {
-    padding: 80px 20px;
-    max-width: 800px;
-    margin: auto;
-    animation: fadeUp 1s ease;
+  padding: 90px 70px;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.8s ease both;
 }
 
-h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 5px;
-    color: #ddd;
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
 }
 
-ul {
-    margin-left: 20px;
-    margin-bottom: 25px;
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  margin-bottom: 50px;
+  color: #fff;
 }
 
-li {
-    margin-bottom: 10px;
+.about-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 60px;
+  align-items: start;
 }
 
-li:hover {
-    color: #00ffd5;
-    transition: 0.3s;
+.about-photo {
+  width: 200px;
+  height: 260px;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.05);
+  border: 1px solid var(--border);
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+.about-text p {
+  font-size: 14px;
+  color: var(--soft);
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+
+.about-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.about-detail-item {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.about-detail-item .d-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.about-detail-item .d-value {
+  font-size: 13px;
+  color: #ddd;
+}
+
+.edu-list { display: flex; flex-direction: column; gap: 0; }
+
+.edu-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 30px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.edu-item:first-child { border-top: 1px solid var(--border); }
+
+.edu-year {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  padding-top: 2px;
+}
+
+.edu-school {
+  font-size: 15px;
+  font-weight: 500;
+  color: #eee;
+  margin-bottom: 4px;
+}
+
+.edu-degree {
+  font-size: 13px;
+  color: var(--soft);
+}
+
+.proj-grid { display: flex; flex-direction: column; gap: 12px; }
+
+.proj-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.25s, background 0.25s;
+  cursor: default;
+}
+
+.proj-card:hover {
+  border-color: #444;
+  background: #1a1a1a;
+}
+
+.proj-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #eee;
+  margin-bottom: 4px;
+}
+
+.proj-tech {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.proj-link {
+  font-size: 12px;
+  color: #888;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.proj-link:hover { color: #fff; }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.skill-item {
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--soft);
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+  cursor: default;
+}
+
+.skill-item:hover {
+  border-color: #555;
+  color: #fff;
+}
+
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 20px; right: 20px;
+  z-index: 200;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 10px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: #fff;
+  transition: 0.3s;
 }
 
 @keyframes fadeUp {
-    from {opacity: 0; transform: translateY(40px);}
-    to {opacity: 1; transform: translateY(0);}
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 700px) {
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .text h1 {
-        font-size: 34px;
-    }
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .hamburger { display: flex; }
+  .main { margin-left: 0; }
+  #home, .section { padding: 60px 28px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { width: 100%; height: 220px; }
+  .edu-item { grid-template-columns: 1fr; gap: 6px; }
+  .hero-scroll { left: 28px; }
 }
 </style>
 </head>
-
 <body>
 
-<section class="hero">
-    <div class="hero-content">
-        <img src="photo.jpeg" alt="Profile Photo">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">A.<span>Napala</span></div>
+  <nav>
+    <a href="#home" class="active">
+      <span class="nav-icon">○</span> Home
+    </a>
+    <a href="#about">
+      <span class="nav-icon">○</span> About
+    </a>
+    <a href="#education">
+      <span class="nav-icon">○</span> Education
+    </a>
+    <a href="#projects">
+      <span class="nav-icon">○</span> Projects
+    </a>
+    <a href="#skills">
+      <span class="nav-icon">○</span> Skills
+    </a>
+  </nav>
+  <div class="sidebar-bottom">
+    angelicanapala@gmail.com
+  </div>
+</aside>
 
-        <div class="text">
-            <h1>Angelica Napala</h1>
-            <p>Bachelor of Science in Information Technology (BSIT)</p>
-            <p>General Santos City, Philippines</p>
-            <p>angelicanapala@gmail.com</p>
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+
+<main class="main">
+
+  <section id="home">
+    <div class="hero-eyebrow">Portfolio — 2025</div>
+    <h1 class="hero-name">Angelica<br><em>Napala</em></h1>
+    <p class="hero-tagline">Creating beyond the ordinary.</p>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">BSIT Student · General Santos City, Philippines</p>
+    <div class="hero-scroll">Scroll to explore</div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="section-label">01 — About</div>
+    <h2 class="section-title">Who I am</h2>
+    <div class="about-grid">
+      <img src="photo.jpeg" alt="Angelica Napala" class="about-photo">
+      <div class="about-text">
+        <p>I'm a BSIT student focused on turning ideas into efficient and well-built systems. With a strong interest in coding and technology, I strive to improve and create meaningful digital experiences.</p>
+        <p>I'm always open to learning and new opportunities.</p>
+        <div class="about-detail">
+          <div class="about-detail-item">
+            <div class="d-label">Degree</div>
+            <div class="d-value">BS Information Technology</div>
+          </div>
+          <div class="about-detail-item">
+            <div class="d-label">University</div>
+            <div class="d-value">Ateneo de Davao University</div>
+          </div>
+          <div class="about-detail-item">
+            <div class="d-label">Location</div>
+            <div class="d-value">General Santos City, PH</div>
+          </div>
+          <div class="about-detail-item">
+            <div class="d-label">Status</div>
+            <div class="d-value">Open to opportunities</div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<section class="section">
-
-<h2>Education</h2>
-<div style="margin-bottom: 16px;">
-    <p><strong>Holy Trinity College of GSC</strong></p>
-    <p>High school Degree (2016 - 2020)</p>
-</div>
-<div style="margin-bottom: 16px;">
-    <p><strong>Notre Dame of Dadiangas University</strong></p>
-    <p>Senior High School Degree(STEM) - (2020-2022)</p>
-</div>
-<div style="margin-bottom: 16px;">
-    <p><strong>Ateneo de Davao University</strong></p>
-    <p>BS Information Technology (2022 – Present)</p>
-</div>
-
-<h2>Projects</h2>
-<div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;">
-    <div style="background: #1a1a1a; border: 0.5px solid #333; border-radius: 12px; padding: 14px 16px; transition: border-color 0.3s; cursor: default;"
-        onmouseover="this.style.borderColor='#00ffd5'" onmouseout="this.style.borderColor='#333'">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong style="font-size: 14px;">Personal CV Website</strong>
-            <span style="font-size: 12px; color: #aaa;">HTML · CSS</span>
+  <section id="education" class="section">
+    <div class="section-label">02 — Education</div>
+    <h2 class="section-title">Academic background</h2>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-year">2022 – Present</div>
+        <div>
+          <div class="edu-school">Ateneo de Davao University</div>
+          <div class="edu-degree">BS Information Technology</div>
         </div>
-    </div>
-    <div style="background: #1a1a1a; border: 0.5px solid #333; border-radius: 12px; padding: 14px 16px; transition: border-color 0.3s; cursor: default;"
-        onmouseover="this.style.borderColor='#00ffd5'" onmouseout="this.style.borderColor='#333'">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <strong style="font-size: 14px;">Robux Pricelist Design</strong>
-            <a href="https://www.facebook.com/your-link-here" target="_blank" style="font-size: 12px; color: #00ffd5; text-decoration: none;">View →</a>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2020 – 2022</div>
+        <div>
+          <div class="edu-school">Notre Dame of Dadiangas University</div>
+          <div class="edu-degree">Senior High School — STEM</div>
         </div>
-        <div style="font-size: 12px; color: #aaa; margin-top: 4px;">Canva</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2016 – 2020</div>
+        <div>
+          <div class="edu-school">Holy Trinity College of GSC</div>
+          <div class="edu-degree">High School Degree</div>
+        </div>
+      </div>
     </div>
-</div>
-    
-    <h2>Skills</h2>
-    <ul>
-        <li>Canva</li>
-        <li>Microsoft Word</li>
-        <li>Basic HTML & CSS</li>
-        <li>Communication</li>
-    </ul>
+  </section>
 
-</section>
+  <section id="projects" class="section">
+    <div class="section-label">03 — Projects</div>
+    <h2 class="section-title">Selected work</h2>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div>
+          <div class="proj-name">Personal CV Website</div>
+          <div class="proj-tech">HTML · CSS</div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div>
+          <div class="proj-name">Robux Pricelist Design</div>
+          <div class="proj-tech">Canva</div>
+        </div>
+        <a href="https://www.facebook.com/" target="_blank" class="proj-link">View →</a>
+      </div>
+    </div>
+  </section>
 
+  <section id="skills" class="section">
+    <div class="section-label">04 — Skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-item">Canva</div>
+      <div class="skill-item">Microsoft Word</div>
+      <div class="skill-item">HTML & CSS</div>
+      <div class="skill-item">Communication</div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const links = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section[id]');
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+
+hamburger.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+});
+
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
