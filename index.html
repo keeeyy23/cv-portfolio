@@ -101,14 +101,6 @@ nav a .nav-icon {
   text-align: center;
 }
 
-.sidebar-bottom {
-  padding: 24px 28px 0;
-  border-top: 1px solid var(--border);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-
 .main {
   margin-left: var(--sidebar-w);
   flex: 1;
@@ -211,7 +203,6 @@ nav a .nav-icon {
 .section {
   padding: 90px 70px;
   border-top: 1px solid var(--border);
-  animation: fadeUp 0.8s ease both;
 }
 
 .section-label {
@@ -309,47 +300,16 @@ nav a .nav-icon {
   color: var(--soft);
 }
 
-.proj-grid { display: flex; flex-direction: column; gap: 12px; }
-
-.proj-card {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 20px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: border-color 0.25s, background 0.25s;
-  cursor: default;
-}
-
-.proj-card:hover {
-  border-color: #444;
-  background: #1a1a1a;
-}
-
-.proj-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: #eee;
-  margin-bottom: 4px;
-}
-
-.proj-tech {
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.proj-link {
-  font-size: 12px;
-  color: #888;
-  text-decoration: none;
-  letter-spacing: 0.06em;
-  transition: color 0.2s;
-  white-space: nowrap;
-}
-
-.proj-link:hover { color: #fff; }
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+.t-item { position: relative; margin-bottom: 28px; }
+.t-item:last-child { margin-bottom: 0; }
+.t-dot { position: absolute; left: -20px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--bg3); border: 1.5px solid #444; transition: background 0.2s, border-color 0.2s; }
+.t-item:hover .t-dot { background: #fff; border-color: #fff; }
+.t-name { font-size: 14px; font-weight: 500; color: #eee; }
+.t-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.t-meta a { color: #888; text-decoration: none; }
+.t-meta a:hover { color: #fff; }
 
 .skills-grid {
   display: grid;
@@ -372,17 +332,67 @@ nav a .nav-icon {
   color: #fff;
 }
 
-.timeline { position: relative; padding-left: 24px; }
-.timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
-.t-item { position: relative; margin-bottom: 28px; }
-.t-item:last-child { margin-bottom: 0; }
-.t-dot { position: absolute; left: -20px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--bg3); border: 1.5px solid #444; transition: background 0.2s, border-color 0.2s; }
-.t-item:hover .t-dot { background: #fff; border-color: #fff; }
-.t-name { font-size: 14px; font-weight: 500; color: #eee; }
-.t-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.t-meta a { color: #888; text-decoration: none; }
-.t-meta a:hover { color: #fff; }
-  
+/* ── Contact Section ── */
+.contact-intro {
+  font-size: 14px;
+  color: var(--soft);
+  line-height: 1.9;
+  max-width: 420px;
+  margin-bottom: 52px;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-row:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.contact-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  width: 100px;
+  flex-shrink: 0;
+}
+
+.contact-link {
+  font-size: 13px;
+  color: #888;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+  flex: 1;
+}
+
+.contact-link:hover {
+  color: #fff;
+}
+
+.contact-arrow {
+  font-size: 11px;
+  color: var(--muted);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.contact-row:hover .contact-arrow {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* ── Hamburger ── */
 .hamburger {
   display: none;
   position: fixed;
@@ -410,12 +420,8 @@ nav a .nav-icon {
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-  }
-  .sidebar.open {
-    transform: translateX(0);
-  }
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
   .hamburger { display: flex; }
   .main { margin-left: 0; }
   #home, .section { padding: 60px 28px; }
@@ -423,6 +429,7 @@ nav a .nav-icon {
   .about-photo { width: 100%; height: 220px; }
   .edu-item { grid-template-columns: 1fr; gap: 6px; }
   .hero-scroll { left: 28px; }
+  .contact-row { flex-wrap: wrap; gap: 8px; }
 }
 </style>
 </head>
@@ -431,28 +438,13 @@ nav a .nav-icon {
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">A.<span>Napala</span></div>
   <nav>
-    <a href="#home" class="active">
-      <span class="nav-icon">○</span> Home
-    </a>
-    <a href="#about">
-      <span class="nav-icon">○</span> About
-    </a>
-    <a href="#education">
-      <span class="nav-icon">○</span> Education
-    </a>
-    <a href="#projects">
-      <span class="nav-icon">○</span> Projects
-    </a>
-    <a href="#skills">
-      <span class="nav-icon">○</span> Skills
-    </a>
+    <a href="#home" class="active"><span class="nav-icon">○</span> Home</a>
+    <a href="#about"><span class="nav-icon">○</span> About</a>
+    <a href="#education"><span class="nav-icon">○</span> Education</a>
+    <a href="#projects"><span class="nav-icon">○</span> Projects</a>
+    <a href="#skills"><span class="nav-icon">○</span> Skills</a>
+    <a href="#contact"><span class="nav-icon">○</span> Contact</a>
   </nav>
-<div class="sidebar-bottom">
-    <div style="font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #444; margin-bottom: 6px;">Contact</div>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=angelicanapala@gmail.com" target="_blank">
-  angelicanapala@gmail.com
-</a>
-</div>
 </aside>
 
 <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -475,8 +467,8 @@ nav a .nav-icon {
     <div class="about-grid">
       <img src="photo.jpeg" alt="Angelica Napala" class="about-photo">
       <div class="about-text">
-        <p>I’m a BSIT student focused on turning ideas into efficient, well-built systems. Driven by a passion for coding and technology, I aim to create impactful and user-centered digital experiences.</p>
-        <p> I’m constantly learning and actively seeking opportunities to grow and contribute.</p>
+        <p>I'm a BSIT student focused on turning ideas into efficient, well-built systems. Driven by a passion for coding and technology, I aim to create impactful and user-centered digital experiences.</p>
+        <p>I'm constantly learning and actively seeking opportunities to grow and contribute.</p>
         <div class="about-detail">
           <div class="about-detail-item">
             <div class="d-label">Degree</div>
@@ -527,22 +519,22 @@ nav a .nav-icon {
     </div>
   </section>
 
-<section id="projects" class="section">
-  <div class="section-label">03 — Projects</div>
-  <h2 class="section-title">What I've Made</h2>
-  <div class="timeline">
-    <div class="t-item">
-      <div class="t-dot"></div>
-      <div class="t-name">Personal CV Website</div>
-      <div class="t-meta">HTML · CSS</div>
+  <section id="projects" class="section">
+    <div class="section-label">03 — Projects</div>
+    <h2 class="section-title">What I've Made</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-name">Personal CV Website</div>
+        <div class="t-meta">HTML · CSS</div>
+      </div>
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-name">Robux Pricelist Design</div>
+        <div class="t-meta">Canva · <a href="https://www.facebook.com/share/p/1aZYQ9fa8P/" target="_blank">View →</a></div>
+      </div>
     </div>
-    <div class="t-item">
-      <div class="t-dot"></div>
-      <div class="t-name">Robux Pricelist Design</div>
-      <div class="t-meta">Canva · <a href="https://www.facebook.com/share/p/1aZYQ9fa8P/" target="_blank">View →</a></div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <section id="skills" class="section">
     <div class="section-label">04 — Skills</div>
@@ -552,7 +544,35 @@ nav a .nav-icon {
       <div class="skill-item">Microsoft Office</div>
       <div class="skill-item">Tech-savvy</div>
       <div class="skill-item">VA and Administrative Support</div>
-      <div class="skill-item">Basic Video editing</div>
+      <div class="skill-item">Basic Video Editing</div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="section-label">05 — Contact</div>
+    <h2 class="section-title">Get in touch</h2>
+    <p class="contact-intro">Open to projects, part-time roles, or just a hello. Feel free to reach out through any of the channels below.</p>
+    <div class="contact-list">
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=angelicanapala@gmail.com" target="_blank" class="contact-link">angelicanapala@gmail.com</a>
+        <span class="contact-arrow">→</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Facebook</span>
+        <a href="https://www.facebook.com/angelika0221" target="_blank" class="contact-link">Facebook</a>
+        <span class="contact-arrow">→</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Instagram</span>
+        <a href="https://www.instagram.com/a.anjj_" target="_blank" class="contact-link">Instagram</a>
+        <span class="contact-arrow">→</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">GitHub</span>
+        <a href="https://github.com/keeeyy23" target="_blank" class="contact-link">GitHub</a>
+        <span class="contact-arrow">→</span>
+      </div>
     </div>
   </section>
 
