@@ -372,6 +372,17 @@ nav a .nav-icon {
   color: #fff;
 }
 
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+.t-item { position: relative; margin-bottom: 28px; }
+.t-item:last-child { margin-bottom: 0; }
+.t-dot { position: absolute; left: -20px; top: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--bg3); border: 1.5px solid #444; transition: background 0.2s, border-color 0.2s; }
+.t-item:hover .t-dot { background: #fff; border-color: #fff; }
+.t-name { font-size: 14px; font-weight: 500; color: #eee; }
+.t-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.t-meta a { color: #888; text-decoration: none; }
+.t-meta a:hover { color: #fff; }
+  
 .hamburger {
   display: none;
   position: fixed;
@@ -513,25 +524,22 @@ nav a .nav-icon {
     </div>
   </section>
 
-  <section id="projects" class="section">
-    <div class="section-label">03 — Projects</div>
-    <h2 class="section-title">What I've Made</h2>
-    <div class="proj-grid">
-      <div class="proj-card">
-        <div>
-          <div class="proj-name">Personal CV Website</div>
-          <div class="proj-tech">HTML · CSS</div>
-        </div>
-      </div>
-      <div class="proj-card">
-        <div>
-          <div class="proj-name">Robux Pricelist Design</div>
-          <div class="proj-tech">Canva</div>
-        </div>
-        <a href="https://www.facebook.com/share/p/1aZYQ9fa8P/" target="_blank" class="proj-link">View →</a>
-      </div>
+<section id="projects" class="section">
+  <div class="section-label">03 — Projects</div>
+  <h2 class="section-title">What I've Made</h2>
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-name">Personal CV Website</div>
+      <div class="t-meta">HTML · CSS</div>
     </div>
-  </section>
+    <div class="t-item">
+      <div class="t-dot"></div>
+      <div class="t-name">Robux Pricelist Design</div>
+      <div class="t-meta">Canva · <a href="https://www.facebook.com/share/p/1aZYQ9fa8P/" target="_blank">View →</a></div>
+    </div>
+  </div>
+</section>
 
   <section id="skills" class="section">
     <div class="section-label">04 — Skills</div>
